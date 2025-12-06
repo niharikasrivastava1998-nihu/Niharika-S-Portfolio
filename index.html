@@ -36,6 +36,7 @@
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             z-index: 9999;
             transition: opacity 1s ease-in-out;
+            pointer-events: none; /* Ensures clicks go through if it gets stuck visually */
         }
 
         .boot-logo {
@@ -367,4 +368,155 @@
                 <h1>Gallery of Credentials</h1>
                 <div class="cert-grid">
                     <div class="cert-item">
-                        <i class="fab fa-google" style="font-size:2.5rem; color:#4285F4
+                        <i class="fab fa-google" style="font-size:2.5rem; color:#4285F4; margin-bottom:15px;"></i>
+                        <h4>Google Analytics 360</h4>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fab fa-google" style="font-size:2.5rem; color:#4285F4; margin-bottom:15px;"></i>
+                        <h4>Advanced Google Analytics</h4>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fab fa-google" style="font-size:2.5rem; color:#4285F4; margin-bottom:15px;"></i>
+                        <h4>Google Ads Display</h4>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fab fa-hubspot" style="font-size:2.5rem; color:#FF7A59; margin-bottom:15px;"></i>
+                        <h4>Inbound Marketing</h4>
+                    </div>
+                    <div class="cert-item">
+                        <i class="fas fa-users" style="font-size:2.5rem; color:#007AFF; margin-bottom:15px;"></i>
+                        <h4>Soft Skills (Talerang)</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="app-library" class="app-window">
+        <div class="app-sidebar">
+            <div class="window-controls"><div class="dot dot-red" onclick="closeApp('app-library')"></div></div>
+            <div class="nav-item active"><i class="fas fa-book"></i> Publications</div>
+        </div>
+        <div class="app-main">
+            <div class="tab-content active">
+                <h1>Literary Portfolio</h1>
+                <p>Published Author & Poet.</p>
+
+                <div class="glass-card" style="border-left: 5px solid #FF9500;">
+                    <h3>"To Be Continued..."</h3>
+                    <p><strong>Role:</strong> Author | <strong>Publisher:</strong> Blue Rose Publications (2016)</p>
+                    <p>A debut novel exploring human resilience. Available on Amazon.</p>
+                </div>
+
+                <div class="glass-card" style="border-left: 5px solid #AF52DE;">
+                    <h3>"Japanese Antiques"</h3>
+                    <p><strong>Publication:</strong> UNREAD Anthology (Platform For Artists)</p>
+                    <p>Featured in a collection of 100 pieces by writers across India.</p>
+                </div>
+
+                <div class="glass-card" style="border-left: 5px solid #34C759;">
+                    <h3>"Sundar From My Mother's Dictionary"</h3>
+                    <p><strong>Publication:</strong> Fable by The Cognition Tree</p>
+                    <p>Describes the meaning of "Beautiful" with a vision to promote self-love.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="app-lab" class="app-window">
+        <div class="app-sidebar">
+            <div class="window-controls"><div class="dot dot-red" onclick="closeApp('app-lab')"></div></div>
+            <div class="nav-item active"><i class="fas fa-code"></i> GitHub Labs</div>
+        </div>
+        <div class="app-main">
+            <div class="tab-content active">
+                <h1>Open Source Projects</h1>
+                <p>Where creativity meets logic.</p>
+                
+                <div class="cert-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:20px;">
+                    <div class="glass-card" style="text-align:center;">
+                        <i class="fas fa-calculator" style="font-size:3rem; color:#5856D6; margin-bottom:15px;"></i>
+                        <h3>Total Impact Calc</h3>
+                        <p>Measure cumulative metrics.</p>
+                        <a href="https://niharikasrivastava26.github.io/Total-Impact-Calculator/" target="_blank" style="display:inline-block; padding:10px 20px; background:#000; color:white; border-radius:20px; text-decoration:none; font-size:0.9rem;">View Live</a>
+                    </div>
+
+                    <div class="glass-card" style="text-align:center;">
+                        <i class="fas fa-robot" style="font-size:3rem; color:#5856D6; margin-bottom:15px;"></i>
+                        <h3>Day.OS</h3>
+                        <p>AI Life Planner.</p>
+                        <a href="https://niharikasrivastava26.github.io/Day.OS/" target="_blank" style="display:inline-block; padding:10px 20px; background:#000; color:white; border-radius:20px; text-decoration:none; font-size:0.9rem;">View Live</a>
+                    </div>
+
+                    <div class="glass-card" style="text-align:center;">
+                        <i class="fas fa-leaf" style="font-size:3rem; color:#5856D6; margin-bottom:15px;"></i>
+                        <h3>VeggieSmart</h3>
+                        <p>Meal & Sip Planner.</p>
+                        <a href="https://niharikasrivastava26.github.io/VeggieSmart/" target="_blank" style="display:inline-block; padding:10px 20px; background:#000; color:white; border-radius:20px; text-decoration:none; font-size:0.9rem;">View Live</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="app-mail" class="app-window">
+        <div class="app-sidebar">
+            <div class="window-controls"><div class="dot dot-red" onclick="closeApp('app-mail')"></div></div>
+            <div class="nav-item active"><i class="fas fa-paper-plane"></i> New Message</div>
+        </div>
+        <div class="app-main">
+            <div class="tab-content active">
+                <h1>Let's Connect</h1>
+                <div class="glass-card">
+                    <form action="mailto:niharikasrivastava1998@gmail.com" method="post" enctype="text/plain">
+                        <input type="text" placeholder="Subject" style="width:100%; padding:15px; border-radius:10px; border:1px solid #ddd; margin-bottom:15px; outline:none;">
+                        <textarea placeholder="Write your message here..." style="width:100%; height:200px; padding:15px; border-radius:10px; border:1px solid #ddd; margin-bottom:15px; resize:none; outline:none; font-family:inherit;"></textarea>
+                        <button type="submit" style="display: inline-block; padding: 12px 30px; background: #000; color: white; border-radius: 30px; border:none; cursor:pointer;">Send Message</button>
+                    </form>
+                </div>
+                <div style="text-align:center; margin-top:20px;">
+                    <a href="https://www.linkedin.com/in/niharika-srivastava-47240a185" target="_blank" style="color:#007AFF; text-decoration:none; font-weight:600; font-size:1.1rem;"><i class="fab fa-linkedin"></i> Connect on LinkedIn</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // BOOT LOGIC (Safety Timer)
+        function startOS() {
+            const bootScreen = document.getElementById('boot-screen');
+            const desktop = document.getElementById('desktop');
+            bootScreen.style.opacity = '0';
+            setTimeout(() => {
+                bootScreen.style.display = 'none';
+                desktop.style.opacity = '1';
+            }, 1000);
+        }
+
+        // Try load, then force start if stuck
+        window.addEventListener('load', () => setTimeout(startOS, 4000));
+        setTimeout(startOS, 6000); // Failsafe
+
+        // APP LOGIC
+        function openApp(id) {
+            document.querySelectorAll('.app-window').forEach(el => el.classList.remove('open'));
+            document.querySelector('.dock-container').style.transform = 'translate(-50%, 100px)';
+            setTimeout(() => { document.getElementById(id).classList.add('open'); }, 300);
+        }
+
+        function closeApp(id) {
+            document.getElementById(id).classList.remove('open');
+            setTimeout(() => { document.querySelector('.dock-container').style.transform = 'translate(-50%, 0)'; }, 300);
+        }
+
+        // TAB SWITCHING
+        function switchTab(tabId, navElement) {
+            const parentWindow = navElement.closest('.app-window');
+            parentWindow.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            parentWindow.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            navElement.classList.add('active');
+        }
+    </script>
+</body>
+</html>
