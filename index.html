@@ -3,25 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Niharika | Spatial OS 4.0</title>
-    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Niharika | Spatial OS 5.0</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- CORE VARIABLES (Liquid Glass Theme) --- */
+        /* --- CORE VARIABLES --- */
         :root {
-            --bg-deep: #000;
-            --glass-panel: rgba(255, 255, 255, 0.65);
-            --glass-sidebar: rgba(240, 240, 250, 0.5);
-            --glass-border: rgba(255, 255, 255, 0.4);
+            --bg-deep: #000000;
+            --glass-panel: rgba(255, 255, 255, 0.85);
+            --glass-sidebar: rgba(245, 245, 250, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.6);
             --accent: #007AFF;
-            --accent-glow: rgba(0, 122, 255, 0.3);
             --text-dark: #1d1d1f;
-            --text-gray: #555;
-            --blur-strength: 50px;
+            --text-gray: #6e6e73;
+            --blur-strength: 60px;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'SF Pro Display', 'Outfit', sans-serif; -webkit-tap-highlight-color: transparent; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; -webkit-tap-highlight-color: transparent; }
 
         body {
             background: var(--bg-deep);
@@ -33,27 +32,25 @@
         /* --- 1. CINEMATIC BOOT SEQUENCE --- */
         #boot-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; color: #fff;
+            background: #f2f2f7; color: #000;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             z-index: 9999;
             transition: opacity 1s ease-in-out;
         }
 
-        .hello-text {
-            font-size: 5rem; font-weight: 700; letter-spacing: -2px;
-            background: linear-gradient(120deg, #fff, #888); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: fadeInOut 3s ease-in-out forwards;
-            opacity: 0;
+        .boot-logo {
+            font-size: 5rem; font-weight: 800; letter-spacing: -3px;
+            background: linear-gradient(120deg, #333, #000); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: breathe 3s ease-in-out forwards;
         }
 
-        .welcome-text {
-            position: absolute; font-size: 1.2rem; font-weight: 400; color: #888; opacity: 0;
-            letter-spacing: 2px; text-transform: uppercase;
-            animation: fadeInUp 1.5s ease-out 3.5s forwards;
+        .boot-sub {
+            margin-top: 20px; font-size: 1.2rem; color: #666; letter-spacing: 2px; text-transform: uppercase;
+            opacity: 0; animation: fadeUp 1s ease-out 1.5s forwards;
         }
 
-        @keyframes fadeInOut { 0% { opacity: 0; transform: scale(0.9); } 20% { opacity: 1; transform: scale(1); } 80% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(1.1); } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes breathe { 0% { opacity: 0; transform: scale(0.9); } 50% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(1.1); } }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         /* --- 2. DESKTOP & WALLPAPER --- */
         #desktop {
@@ -63,51 +60,58 @@
 
         .wallpaper {
             position: absolute; width: 100%; height: 100%;
-            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             z-index: -1;
         }
         
-        /* Floating Orbs (Liquid Lava Lamp Effect) */
-        .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.6; animation: float 20s infinite alternate; }
-        .o1 { width: 70vh; height: 70vh; background: #a18cd1; top: -20%; left: -20%; }
-        .o2 { width: 60vh; height: 60vh; background: #fbc2eb; bottom: -10%; right: -10%; animation-delay: -5s; }
-        .o3 { width: 40vh; height: 40vh; background: #8fd3f4; top: 40%; right: 20%; animation-delay: -10s; }
+        .orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.6; animation: float 20s infinite alternate; }
+        .o1 { width: 60vh; height: 60vh; background: #a18cd1; top: -10%; left: -10%; }
+        .o2 { width: 50vh; height: 50vh; background: #fbc2eb; bottom: -10%; right: -10%; animation-delay: -5s; }
+        .o3 { width: 40vh; height: 40vh; background: #8fd3f4; top: 40%; right: 30%; animation-delay: -10s; }
 
         @keyframes float { from { transform: translate(0,0); } to { transform: translate(30px, 50px); } }
 
         /* --- 3. DOCK (MacOS Style) --- */
         .dock-container {
-            position: fixed; bottom: 25px; left: 50%; transform: translateX(-50%);
-            display: flex; gap: 15px; padding: 12px 20px;
-            background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(25px);
-            border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 15px; padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(40px);
+            border-radius: 28px; border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
             z-index: 1000; transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         .app-icon {
-            width: 55px; height: 55px; border-radius: 14px;
+            width: 60px; height: 60px; border-radius: 16px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 1.6rem; color: white; cursor: pointer;
+            font-size: 1.8rem; color: white; cursor: pointer;
             transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1.5); position: relative;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
-        .app-icon:hover { transform: translateY(-15px) scale(1.15); }
-        
-        .ico-profile { background: linear-gradient(180deg, #4facfe, #00f2fe); }
-        .ico-work { background: linear-gradient(180deg, #f093fb, #f5576c); }
-        .ico-stats { background: linear-gradient(180deg, #43e97b, #38f9d7); }
-        .ico-lab { background: linear-gradient(180deg, #667eea, #764ba2); }
-        .ico-mail { background: linear-gradient(180deg, #434343, #000000); }
+        .app-icon:hover { transform: translateY(-20px) scale(1.2); }
+        .app-icon::after {
+            content: attr(data-name); position: absolute; top: -40px;
+            background: rgba(255,255,255,0.9); color: black; font-size: 12px; font-weight: 600;
+            padding: 4px 8px; border-radius: 6px; opacity: 0; pointer-events: none; transition: 0.2s;
+        }
+        .app-icon:hover::after { opacity: 1; top: -50px; }
 
-        /* --- 4. LIQUID GLASS APP WINDOWS --- */
+        /* Icon Gradients */
+        .ico-profile { background: linear-gradient(180deg, #434343, #000000); }
+        .ico-work { background: linear-gradient(180deg, #FF3B30, #FF9500); }
+        .ico-stats { background: linear-gradient(180deg, #34C759, #30B0C7); }
+        .ico-library { background: linear-gradient(180deg, #5856D6, #AF52DE); }
+        .ico-lab { background: linear-gradient(180deg, #007AFF, #5AC8FA); }
+        .ico-mail { background: linear-gradient(180deg, #8E8E93, #636366); }
+
+        /* --- 4. LIQUID GLASS WINDOWS --- */
         .app-window {
-            position: fixed; top: 5%; left: 5%; width: 90%; height: 85%;
+            position: fixed; top: 8%; left: 8%; width: 84%; height: 80%;
             background: var(--glass-panel);
-            backdrop-filter: blur(var(--blur-strength)) saturate(150%);
+            backdrop-filter: blur(var(--blur-strength));
             border: 1px solid var(--glass-border);
             border-radius: 24px;
-            box-shadow: 0 40px 80px rgba(0,0,0,0.2);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.1);
             z-index: 2000;
             display: flex;
             opacity: 0; pointer-events: none; transform: scale(0.9) translateY(40px);
@@ -116,80 +120,86 @@
         }
         .app-window.open { opacity: 1; pointer-events: all; transform: scale(1) translateY(0); }
 
-        /* Sidebar Navigation */
+        /* Sidebar */
         .app-sidebar {
-            width: 250px; background: var(--glass-sidebar);
-            border-right: 1px solid rgba(0,0,0,0.05);
-            padding: 20px; display: flex; flex-direction: column;
+            width: 260px; background: var(--glass-sidebar);
+            border-right: 1px solid rgba(0,0,0,0.08);
+            padding: 25px; display: flex; flex-direction: column;
         }
         
-        .window-controls { display: flex; gap: 8px; margin-bottom: 30px; }
-        .dot { width: 12px; height: 12px; border-radius: 50%; cursor: pointer; }
-        .dot-red { background: #ff5f56; }
-        .dot-yel { background: #ffbd2e; }
-        .dot-grn { background: #27c93f; }
+        .window-controls { display: flex; gap: 8px; margin-bottom: 40px; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; cursor: pointer; transition: 0.2s; }
+        .dot:hover { transform: scale(1.2); }
+        .dot-red { background: #FF5F56; } .dot-yel { background: #FFBD2E; } .dot-grn { background: #27C93F; }
 
         .nav-item {
-            padding: 12px 15px; margin-bottom: 5px; border-radius: 10px; cursor: pointer;
+            padding: 12px 16px; margin-bottom: 8px; border-radius: 12px; cursor: pointer;
             color: var(--text-gray); font-weight: 500; font-size: 0.95rem;
-            transition: 0.2s; display: flex; align-items: center; gap: 10px;
+            transition: 0.2s; display: flex; align-items: center; gap: 12px;
         }
-        .nav-item:hover { background: rgba(255,255,255,0.5); color: var(--text-dark); }
-        .nav-item.active { background: white; color: var(--accent); font-weight: 600; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .nav-item:hover { background: rgba(0,0,0,0.05); color: var(--text-dark); }
+        .nav-item.active { background: #fff; color: var(--accent); font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
 
-        /* Main Content Area */
-        .app-main { flex: 1; overflow-y: auto; position: relative; scroll-behavior: smooth; }
-        
-        /* Content Sections */
-        .tab-content { display: none; padding: 40px; animation: fadeIn 0.4s ease; }
+        /* Main Content */
+        .app-main { flex: 1; overflow-y: auto; position: relative; scroll-behavior: smooth; background: rgba(255,255,255,0.4); }
+        .tab-content { display: none; padding: 50px; animation: fadeIn 0.4s ease; }
         .tab-content.active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Typography & Cards */
-        h1 { font-size: 2.5rem; margin-bottom: 10px; line-height: 1.1; }
-        h2 { font-size: 1.5rem; margin-bottom: 20px; font-weight: 600; }
-        p { font-size: 1rem; line-height: 1.6; margin-bottom: 20px; color: #444; }
+        /* Typography & Elements */
+        h1 { font-size: 2.5rem; margin-bottom: 10px; line-height: 1.1; letter-spacing: -1px; }
+        h2 { font-size: 1.5rem; margin-bottom: 25px; font-weight: 600; }
+        h3 { font-size: 1.1rem; margin-bottom: 15px; font-weight: 600; color: var(--text-dark); }
+        p { font-size: 1rem; line-height: 1.7; margin-bottom: 20px; color: #444; }
         
+        /* Glass Cards (Bento) */
         .glass-card {
-            background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.6);
-            padding: 25px; border-radius: 20px; margin-bottom: 20px;
-            transition: transform 0.2s;
+            background: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.8);
+            padding: 30px; border-radius: 20px; margin-bottom: 20px;
+            transition: transform 0.2s; box-shadow: 0 4px 20px rgba(0,0,0,0.02);
         }
-        .glass-card:hover { transform: translateY(-3px); background: rgba(255,255,255,0.8); }
+        .glass-card:hover { transform: translateY(-3px); background: rgba(255,255,255,0.9); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
 
         /* Graphical Stats Bars */
-        .bar-container { margin-bottom: 15px; }
-        .bar-label { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.9rem; font-weight: 600; }
-        .progress-track { width: 100%; height: 8px; background: rgba(0,0,0,0.05); border-radius: 4px; overflow: hidden; }
-        .progress-bar { height: 100%; border-radius: 4px; animation: slideRight 1.5s ease-out forwards; width: 0; }
-        
+        .bar-container { margin-bottom: 20px; }
+        .bar-label { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; font-weight: 600; }
+        .progress-track { width: 100%; height: 10px; background: rgba(0,0,0,0.05); border-radius: 5px; overflow: hidden; }
+        .progress-bar { height: 100%; border-radius: 5px; animation: slideRight 1.5s ease-out forwards; width: 0; }
         @keyframes slideRight { to { width: var(--w); } }
 
-        /* Profile Hero */
+        /* Profile Header */
         .profile-header { display: flex; align-items: center; gap: 30px; margin-bottom: 40px; }
-        .profile-pic { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
-
-        /* Project Grid */
-        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .project-card { 
-            background: white; padding: 20px; border-radius: 18px; 
-            border: 1px solid rgba(0,0,0,0.05); text-align: center;
-            transition: 0.2s; 
+        .profile-icon-large { 
+            width: 100px; height: 100px; border-radius: 50%; background: #333; color: white;
+            display: flex; align-items: center; justify-content: center; font-size: 3rem;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
-        .project-card:hover { transform: scale(1.02); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .btn-visit { 
-            display: inline-block; margin-top: 15px; padding: 8px 20px; 
-            background: var(--text-dark); color: white; text-decoration: none; 
-            border-radius: 20px; font-size: 0.9rem; transition: 0.2s; 
-        }
-        .btn-visit:hover { background: var(--accent); }
 
-        /* Mobile Adjustments */
+        /* Certificate Gallery */
+        .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
+        .cert-item { text-align: center; padding: 20px; border: 1px solid rgba(0,0,0,0.05); border-radius: 15px; background: rgba(255,255,255,0.5); transition: 0.3s; }
+        .cert-item:hover { background: white; transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .cert-item i { font-size: 2rem; margin-bottom: 10px; color: var(--text-gray); }
+        .cert-item h4 { font-size: 0.9rem; font-weight: 600; }
+        
+        /* Timeline */
+        .timeline-item { 
+            padding-left: 25px; border-left: 2px solid #ddd; position: relative; margin-bottom: 30px; 
+        }
+        .timeline-item::before { 
+            content:''; position: absolute; left: -7px; top: 5px; width: 12px; height: 12px; 
+            border-radius: 50%; background: var(--accent); border: 2px solid white; 
+        }
+        .t-date { font-size: 0.8rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
+        .t-role { font-size: 1.2rem; font-weight: 700; margin: 5px 0; }
+        .t-company { font-weight: 500; color: #666; margin-bottom: 10px; }
+
+        /* Mobile */
         @media (max-width: 768px) {
             .app-window { flex-direction: column; top: 0; left: 0; width: 100%; height: 100%; border-radius: 0; }
-            .app-sidebar { width: 100%; height: auto; flex-direction: row; overflow-x: auto; padding: 10px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+            .app-sidebar { width: 100%; height: auto; flex-direction: row; overflow-x: auto; padding: 15px; border-bottom: 1px solid rgba(0,0,0,0.05); }
             .nav-item { white-space: nowrap; font-size: 0.8rem; padding: 8px 12px; }
-            .hello-text { font-size: 3rem; }
+            .boot-logo { font-size: 3rem; }
             .profile-header { flex-direction: column; text-align: center; }
         }
     </style>
@@ -197,8 +207,8 @@
 <body>
 
     <div id="boot-screen">
-        <div class="hello-text">hello</div>
-        <div class="welcome-text">Entering Niharika OS...</div>
+        <div class="boot-logo">N</div>
+        <div class="boot-sub">Welcome to Niharika's World</div>
     </div>
 
     <div id="desktop">
@@ -209,75 +219,48 @@
         </div>
 
         <div class="dock-container">
-            <div class="app-icon ico-profile" onclick="openApp('app-profile')"><i class="fas fa-user-astronaut"></i></div>
-            <div class="app-icon ico-work" onclick="openApp('app-work')"><i class="fas fa-briefcase"></i></div>
-            <div class="app-icon ico-stats" onclick="openApp('app-stats')"><i class="fas fa-chart-bar"></i></div>
-            <div class="app-icon ico-lab" onclick="openApp('app-lab')"><i class="fas fa-code"></i></div>
-            <div class="app-icon ico-mail" onclick="openApp('app-mail')"><i class="fas fa-envelope"></i></div>
+            <div class="app-icon ico-profile" data-name="Profile" onclick="openApp('app-profile')"><i class="fas fa-user-astronaut"></i></div>
+            <div class="app-icon ico-work" data-name="Journey" onclick="openApp('app-work')"><i class="fas fa-briefcase"></i></div>
+            <div class="app-icon ico-stats" data-name="Impact" onclick="openApp('app-stats')"><i class="fas fa-chart-line"></i></div>
+            <div class="app-icon ico-library" data-name="Library" onclick="openApp('app-library')"><i class="fas fa-book-open"></i></div>
+            <div class="app-icon ico-lab" data-name="Lab" onclick="openApp('app-lab')"><i class="fas fa-code"></i></div>
+            <div class="app-icon ico-mail" data-name="Connect" onclick="openApp('app-mail')"><i class="fas fa-paper-plane"></i></div>
         </div>
     </div>
 
     <div id="app-profile" class="app-window">
         <div class="app-sidebar">
-            <div class="window-controls">
-                <div class="dot dot-red" onclick="closeApp('app-profile')"></div>
-                <div class="dot dot-yel"></div>
-                <div class="dot dot-grn"></div>
-            </div>
-            <div class="nav-item active" onclick="switchTab('profile-bio', this)"><i class="fas fa-user"></i> Bio</div>
-            <div class="nav-item" onclick="switchTab('profile-skills', this)"><i class="fas fa-tools"></i> Toolkit</div>
-            <div class="nav-item" onclick="switchTab('profile-awards', this)"><i class="fas fa-trophy"></i> Awards</div>
+            <div class="window-controls"><div class="dot dot-red" onclick="closeApp('app-profile')"></div><div class="dot dot-yel"></div><div class="dot dot-grn"></div></div>
+            <div class="nav-item active" onclick="switchTab('profile-bio', this)"><i class="fas fa-user-circle"></i> Bio & Philosophy</div>
+            <div class="nav-item" onclick="switchTab('profile-edu', this)"><i class="fas fa-graduation-cap"></i> Education</div>
         </div>
         <div class="app-main">
             <div id="profile-bio" class="tab-content active">
                 <div class="profile-header">
-                    <img src="ME.jpg" alt="Profile" class="profile-pic" onerror="this.src='https://ui-avatars.com/api/?name=Niharika+S&background=0D8ABC&color=fff'">
+                    <div class="profile-icon-large"><i class="fas fa-user"></i></div>
                     <div>
                         <h1>Niharika Srivastava</h1>
-                        <p style="margin:0; font-size:1.2rem; color:var(--accent);">Storyteller & Strategist</p>
+                        <p style="margin:0; font-size:1.3rem; color:var(--accent); font-weight:500;">Storyteller & Strategist | 8 Years of Impact</p>
                     </div>
                 </div>
                 <div class="glass-card">
-                    <h2>Philosophy</h2>
-                    <p>I don't just post content; I engineer narratives. My background in <strong>English Literature</strong> fuels a unique approach to content that connects, converts, and builds lasting brand loyalty.</p>
-                    <p>Currently driving growth at <strong>Bajaj Finance Limited</strong>, specializing in transforming brand stories into measurable revenue.</p>
+                    <h2>About Me</h2>
+                    <p>I build communities and drive growth. Currently a <strong>Senior Unit Manager (HR & Comms)</strong> at <strong>Bajaj Finserv</strong>, I specialize in transforming brand stories into measurable revenue.</p>
+                    <p>My unique background in <strong>English Literature</strong> and <strong>German Language</strong> fuels a nuanced approach to content that connects, converts, and builds lasting brand loyalty. I don't just post content; I engineer narratives.</p>
                 </div>
             </div>
-
-            <div id="profile-skills" class="tab-content">
-                <h2>Modern Toolkit</h2>
-                <div class="project-grid">
-                    <div class="glass-card">
-                        <i class="fas fa-brain" style="font-size:2rem; color:#007AFF; margin-bottom:10px;"></i>
-                        <h3>AI & Tech</h3>
-                        <p>Gemini, ChatGPT, Semrush, Google Analytics</p>
-                    </div>
-                    <div class="glass-card">
-                        <i class="fas fa-pen-nib" style="font-size:2rem; color:#FF3B30; margin-bottom:10px;"></i>
-                        <h3>Creative</h3>
-                        <p>Narrative Structure, Copywriting, Figma, Canva</p>
-                    </div>
-                    <div class="glass-card">
-                        <i class="fas fa-bullhorn" style="font-size:2rem; color:#34C759; margin-bottom:10px;"></i>
-                        <h3>Strategy</h3>
-                        <p>Community Growth, Recruitment Marketing, CRM</p>
-                    </div>
+            <div id="profile-edu" class="tab-content">
+                <h2>Academic Foundation</h2>
+                <div class="glass-card" style="border-left: 5px solid #007AFF;">
+                    <h3>Delhi University</h3>
+                    <p><strong>Diploma in German Language</strong> (2018 - 2020)</p>
+                    <p><strong>Bachelor of Arts (English Language & Literature)</strong> (2015 - 2018)</p>
+                    <p style="font-size:0.9rem; color:#666;">Grade: A | Activities: Literary Societies, Volunteering, Management.</p>
                 </div>
-            </div>
-
-            <div id="profile-awards" class="tab-content">
-                <h2>Hall of Fame</h2>
-                <div class="glass-card" style="border-left: 4px solid #FFD700;">
-                    <h3>100 Inspiring Authors of India</h3>
-                    <p>Awarded by The Indian Awaz (2018)</p>
-                </div>
-                <div class="glass-card" style="border-left: 4px solid #007AFF;">
-                    <h3>Literary Captain</h3>
-                    <p>Designated by StoryMirror for outstanding contribution.</p>
-                </div>
-                <div class="glass-card" style="border-left: 4px solid #FF3B30;">
-                    <h3>Wingword Poetry Prize</h3>
-                    <p>Certificate of Merit (2018)</p>
+                <div class="glass-card" style="border-left: 5px solid #FF9500;">
+                    <h3>Jagdish Bal Mandir</h3>
+                    <p><strong>Senior Secondary (12th)</strong></p>
+                    <p style="font-size:0.9rem; color:#666;">Active participation in inter & intra school competitions.</p>
                 </div>
             </div>
         </div>
@@ -285,38 +268,60 @@
 
     <div id="app-work" class="app-window">
         <div class="app-sidebar">
-            <div class="window-controls"><div class="dot dot-red" onclick="closeApp('app-work')"></div></div>
-            <div class="nav-item active"><i class="fas fa-briefcase"></i> Timeline</div>
+            <div class="window-controls"><div class="dot dot-red" onclick="closeApp('app-work')"></div><div class="dot dot-yel"></div><div class="dot dot-grn"></div></div>
+            <div class="nav-item active"><i class="fas fa-briefcase"></i> Experience Timeline</div>
         </div>
         <div class="app-main">
             <div class="tab-content active">
-                <h1>Career Journey</h1>
+                <h1>Professional Journey</h1>
                 
-                <div class="glass-card" style="border-left: 5px solid #007AFF;">
-                    <div style="display:flex; justify-content:space-between;">
-                        <h3>Bajaj Finance Limited</h3>
-                        <span style="font-weight:700; color:#007AFF;">PRESENT</span>
-                    </div>
-                    <p><strong>Social Media Manager</strong></p>
-                    <p>Managing the digital voice of a financial giant. Leading campaigns for a <strong>1M+ LinkedIn community</strong> and utilizing AI to boost conversion rates while maintaining 40% engagement.</p>
+                <div class="timeline-item">
+                    <span class="t-date">Mar 2025 - Present</span>
+                    <div class="t-role">Senior Unit Manager - HR & Communications</div>
+                    <div class="t-company">Bajaj Finserv | Pune, India</div>
+                    <p>Leading strategic communications and social media marketing initiatives.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <span class="t-date">Aug 2023 - Mar 2025</span>
+                    <div class="t-role">Unit Manager - HR & Communications</div>
+                    <div class="t-company">Bajaj Finserv</div>
+                    <p>Spearheaded Social Media Marketing strategies to enhance employer branding.</p>
                 </div>
 
-                <div class="glass-card" style="border-left: 5px solid #FF3B30;">
-                    <div style="display:flex; justify-content:space-between;">
-                        <h3>E2E Networks</h3>
-                        <span style="font-weight:700; color:#FF3B30;">2022-23</span>
-                    </div>
-                    <p><strong>Technical Content Manager</strong></p>
-                    <p>Scaled LinkedIn community to 1M+. Achieved <strong>500% follower growth</strong> in just 6 months (2k to 12k).</p>
+                <div class="timeline-item">
+                    <span class="t-date">Apr 2022 - Aug 2023</span>
+                    <div class="t-role">Technical Content Manager</div>
+                    <div class="t-company">E2E Networks Limited | Delhi</div>
+                    <p>Managed technical content, SEO, and audience engagement. Lead a team of writers and designers. Strategies included Email Marketing, CMS, Performance Marketing, and Employer Branding.</p>
                 </div>
 
-                <div class="glass-card" style="border-left: 5px solid #34C759;">
-                    <div style="display:flex; justify-content:space-between;">
-                        <h3>Scaler & PlanetSpark</h3>
-                        <span style="font-weight:700; color:#34C759;">2021-22</span>
-                    </div>
-                    <p><strong>Marketing Specialist</strong></p>
-                    <p>Shattered revenue targets by <strong>200-300%</strong> through strategic SME collaborations.</p>
+                <div class="timeline-item">
+                    <span class="t-date">Dec 2021 - Feb 2022</span>
+                    <div class="t-role">Marketing Executive (Tech)</div>
+                    <div class="t-company">Scaler Academy | Remote</div>
+                    <p>Marketed brand and achieved revenue targets. Counseled 500+ IT professionals for full-stack courses. Utilized CRM to track pipeline activities.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="t-date">Feb 2021 - Sep 2021</span>
+                    <div class="t-role">Marketing Executive (Non-Tech)</div>
+                    <div class="t-company">PlanetSpark | Remote</div>
+                    <p>Achieved 1000 admissions in K-12 segment. Exceeded monthly revenue targets by <strong>200-300%</strong>.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="t-date">Jul 2020 - Sep 2021</span>
+                    <div class="t-role">Content Writer (Freelance)</div>
+                    <div class="t-company">Doordarshan Kendra | Delhi</div>
+                    <p>Scriptwriter for the program "FARZ" on DD Kashir Channel.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <span class="t-date">Jul 2019 - Aug 2019</span>
+                    <div class="t-role">Event Manager Intern</div>
+                    <div class="t-company">Bennett Coleman (Times Group)</div>
+                    <p>Intern in event management. Co-created management and inter-personal environment.</p>
                 </div>
             </div>
         </div>
@@ -324,150 +329,42 @@
 
     <div id="app-stats" class="app-window">
         <div class="app-sidebar">
-            <div class="window-controls"><div class="dot dot-red" onclick="closeApp('app-stats')"></div></div>
-            <div class="nav-item active"><i class="fas fa-chart-bar"></i> Overview</div>
+            <div class="window-controls"><div class="dot dot-red" onclick="closeApp('app-stats')"></div><div class="dot dot-yel"></div><div class="dot dot-grn"></div></div>
+            <div class="nav-item active" onclick="switchTab('stats-overview', this)"><i class="fas fa-chart-pie"></i> Overview</div>
+            <div class="nav-item" onclick="switchTab('stats-certs', this)"><i class="fas fa-certificate"></i> Certifications</div>
         </div>
         <div class="app-main">
-            <div class="tab-content active">
+            <div id="stats-overview" class="tab-content active">
                 <h1>Impact Dashboard</h1>
-                <p>Quantifiable results driven by storytelling.</p>
+                <div class="glass-card" style="display:flex; justify-content:space-around; text-align:center;">
+                    <div><h2 style="font-size:3rem; margin:0; color:#007AFF;">1M+</h2><p>LinkedIn Reach</p></div>
+                    <div><h2 style="font-size:3rem; margin:0; color:#34C759;">500%</h2><p>Growth</p></div>
+                    <div><h2 style="font-size:3rem; margin:0; color:#FF9500;">300%</h2><p>Rev. Target</p></div>
+                </div>
 
+                <h3>Technical Proficiency</h3>
                 <div class="glass-card">
                     <div class="bar-container">
-                        <div class="bar-label"><span>LinkedIn Community</span> <span>1M+</span></div>
-                        <div class="progress-track"><div class="progress-bar" style="--w: 100%; background: #007AFF;"></div></div>
+                        <div class="bar-label"><span>Google Analytics (360, Power User)</span> <span>Expert</span></div>
+                        <div class="progress-track"><div class="progress-bar" style="--w: 95%; background: #007AFF;"></div></div>
                     </div>
                     <div class="bar-container">
-                        <div class="bar-label"><span>Follower Growth (6 Months)</span> <span>500%</span></div>
+                        <div class="bar-label"><span>SEO & SEM (Semrush)</span> <span>Advanced</span></div>
                         <div class="progress-track"><div class="progress-bar" style="--w: 90%; background: #FF3B30;"></div></div>
                     </div>
                     <div class="bar-container">
-                        <div class="bar-label"><span>Revenue Target Achievement</span> <span>300%</span></div>
-                        <div class="progress-track"><div class="progress-bar" style="--w: 75%; background: #34C759;"></div></div>
+                        <div class="bar-label"><span>CRM (Zoho, HubSpot)</span> <span>Advanced</span></div>
+                        <div class="progress-track"><div class="progress-bar" style="--w: 85%; background: #34C759;"></div></div>
                     </div>
                     <div class="bar-container">
-                        <div class="bar-label"><span>Engagement Rate</span> <span>40%</span></div>
-                        <div class="progress-track"><div class="progress-bar" style="--w: 40%; background: #FF9500;"></div></div>
-                    </div>
-                </div>
-
-                <div class="project-grid">
-                    <div class="glass-card" style="text-align:center;">
-                        <h2 style="font-size:3rem; margin:0;">12K</h2>
-                        <p>Instagram Followers</p>
-                    </div>
-                    <div class="glass-card" style="text-align:center;">
-                        <h2 style="font-size:3rem; margin:0;">1K+</h2>
-                        <p>Admissions Driven</p>
+                        <div class="bar-label"><span>Content Tools (Canva, Figma, WordPress)</span> <span>Expert</span></div>
+                        <div class="progress-track"><div class="progress-bar" style="--w: 92%; background: #AF52DE;"></div></div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div id="app-lab" class="app-window">
-        <div class="app-sidebar">
-            <div class="window-controls"><div class="dot dot-red" onclick="closeApp('app-lab')"></div></div>
-            <div class="nav-item active"><i class="fas fa-code"></i> GitHub</div>
-        </div>
-        <div class="app-main">
-            <div class="tab-content active">
-                <h1>Open Source Lab</h1>
-                <p>Exploring the intersection of creativity and logic.</p>
-                
-                <div class="project-grid">
-                    <div class="project-card">
-                        <i class="fas fa-calculator" style="font-size:3rem; color:#5856D6; margin-bottom:15px;"></i>
-                        <h3>Total Impact Calc</h3>
-                        <p>Visualize cumulative impact metrics.</p>
-                        <a href="https://niharikasrivastava26.github.io/Total-Impact-Calculator/" target="_blank" class="btn-visit">Launch App</a>
-                    </div>
-
-                    <div class="project-card">
-                        <i class="fas fa-robot" style="font-size:3rem; color:#5856D6; margin-bottom:15px;"></i>
-                        <h3>Day.OS</h3>
-                        <p>AI-powered intelligent daily planner.</p>
-                        <a href="https://niharikasrivastava26.github.io/Day.OS/" target="_blank" class="btn-visit">Launch App</a>
-                    </div>
-
-                    <div class="project-card">
-                        <i class="fas fa-leaf" style="font-size:3rem; color:#5856D6; margin-bottom:15px;"></i>
-                        <h3>VeggieSmart</h3>
-                        <p>Vibrant meal & sip planner.</p>
-                        <a href="https://niharikasrivastava26.github.io/VeggieSmart/" target="_blank" class="btn-visit">Launch App</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="app-mail" class="app-window">
-        <div class="app-sidebar">
-            <div class="window-controls"><div class="dot dot-red" onclick="closeApp('app-mail')"></div></div>
-            <div class="nav-item active"><i class="fas fa-paper-plane"></i> Compose</div>
-        </div>
-        <div class="app-main">
-            <div class="tab-content active">
-                <h1>Let's Connect</h1>
-                <div class="glass-card">
-                    <form action="mailto:niharikasrivastava1998@gmail.com" method="post" enctype="text/plain">
-                        <input type="text" placeholder="Subject: Collaboration" style="width:100%; padding:15px; border-radius:10px; border:1px solid #ddd; margin-bottom:15px; outline:none;">
-                        <textarea placeholder="Write your message here..." style="width:100%; height:200px; padding:15px; border-radius:10px; border:1px solid #ddd; margin-bottom:15px; resize:none; outline:none; font-family:inherit;"></textarea>
-                        <button type="submit" class="btn-visit" style="border:none; cursor:pointer; width:100%;">Send Message</button>
-                    </form>
-                </div>
-                <div style="text-align:center; margin-top:20px;">
-                    <a href="https://www.linkedin.com/in/niharika-srivastava-47240a185" target="_blank" style="color:#007AFF; text-decoration:none; font-weight:600; font-size:1.1rem;"><i class="fab fa-linkedin"></i> Connect on LinkedIn</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // BOOT SEQUENCE
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('boot-screen').style.opacity = '0';
-                setTimeout(() => {
-                    document.getElementById('boot-screen').style.display = 'none';
-                    document.getElementById('desktop').style.opacity = '1';
-                }, 1000);
-            }, 5500);
-        });
-
-        // APP LOGIC
-        function openApp(id) {
-            // Close others
-            document.querySelectorAll('.app-window').forEach(el => el.classList.remove('open'));
-            // Hide dock
-            document.querySelector('.dock-container').style.transform = 'translate(-50%, 100px)';
-            
-            setTimeout(() => {
-                document.getElementById(id).classList.add('open');
-            }, 300);
-        }
-
-        function closeApp(id) {
-            document.getElementById(id).classList.remove('open');
-            // Show dock
-            setTimeout(() => {
-                document.querySelector('.dock-container').style.transform = 'translate(-50%, 0)';
-            }, 300);
-        }
-
-        // TAB SWITCHING (Sidebar)
-        function switchTab(tabId, navElement) {
-            // Get parent window
-            const parentWindow = navElement.closest('.app-window');
-            
-            // Remove active from all tabs in this window
-            parentWindow.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-            parentWindow.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-            
-            // Activate selected
-            document.getElementById(tabId).classList.add('active');
-            navElement.classList.add('active');
-        }
-    </script>
-</body>
-</html>
+            <div id="stats-certs" class="tab-content">
+                <h1>Gallery of Credentials</h1>
+                <div class="cert-grid">
+                    <div class="cert-item">
+                        <i class="fab fa-google" style="font-size:2.5rem; color:#4285F4
