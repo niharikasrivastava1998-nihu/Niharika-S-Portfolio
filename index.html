@@ -3,213 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Niharika | Spatial OS 5.0</title>
+    <title>Niharika | Light Spatial OS</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- CORE VARIABLES --- */
+        /* --- CORE VARIABLES (LIGHT LIQUID THEME) --- */
         :root {
-            --bg-deep: #000000;
-            --glass-panel: rgba(255, 255, 255, 0.85);
+            /* Backgrounds */
+            --bg-color: #f2f2f7; /* Apple Light Grey */
+            --glass-panel: rgba(255, 255, 255, 0.75);
             --glass-sidebar: rgba(245, 245, 250, 0.6);
-            --glass-border: rgba(255, 255, 255, 0.6);
-            --accent: #007AFF;
+            --glass-border: rgba(255, 255, 255, 0.8);
+            
+            /* Colors */
+            --accent: #007AFF; /* System Blue */
             --text-dark: #1d1d1f;
-            --text-gray: #6e6e73;
-            --blur-strength: 60px;
+            --text-gray: #86868b;
+            
+            /* Effects */
+            --blur-strength: 50px;
+            --shadow-soft: 0 20px 40px rgba(0,0,0,0.05);
+            --shadow-deep: 0 40px 80px rgba(0,0,0,0.1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; -webkit-tap-highlight-color: transparent; }
 
         body {
-            background: var(--bg-deep);
+            background: var(--bg-color);
             height: 100vh;
             overflow: hidden;
             color: var(--text-dark);
         }
 
-        /* --- 1. CINEMATIC BOOT SEQUENCE --- */
+        /* --- 1. LIGHT CINEMATIC BOOT --- */
         #boot-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #f2f2f7; color: #000;
+            background: #f2f2f7; /* Light Grey */
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             z-index: 9999;
-            transition: opacity 1s ease-in-out;
-            pointer-events: none; /* Ensures clicks go through if it gets stuck visually */
+            transition: opacity 1.5s ease-in-out;
+            pointer-events: none;
         }
 
-        .boot-logo {
-            font-size: 5rem; font-weight: 800; letter-spacing: -3px;
-            background: linear-gradient(120deg, #333, #000); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: breathe 3s ease-in-out forwards;
+        .hello-text {
+            font-size: 5rem; font-weight: 700; letter-spacing: -2px;
+            color: #000;
+            animation: fadeInOut 3s ease-in-out forwards;
+            opacity: 0;
         }
 
-        .boot-sub {
-            margin-top: 20px; font-size: 1.2rem; color: #666; letter-spacing: 2px; text-transform: uppercase;
-            opacity: 0; animation: fadeUp 1s ease-out 1.5s forwards;
+        .welcome-text {
+            position: absolute; font-size: 1.5rem; font-weight: 400; color: #555;
+            letter-spacing: 1px;
+            opacity: 0;
+            animation: fadeInUp 1.5s ease-out 3.2s forwards;
         }
 
-        @keyframes breathe { 0% { opacity: 0; transform: scale(0.9); } 50% { opacity: 1; transform: scale(1); } 100% { opacity: 0; transform: scale(1.1); } }
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInOut { 
+            0% { opacity: 0; transform: scale(0.95); } 
+            20% { opacity: 1; transform: scale(1); } 
+            80% { opacity: 1; transform: scale(1); } 
+            100% { opacity: 0; transform: scale(1.05); } 
+        }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- 2. DESKTOP & WALLPAPER --- */
+        /* --- 2. DESKTOP & LIQUID WALLPAPER --- */
         #desktop {
-            opacity: 0; transition: opacity 1.5s ease;
+            opacity: 0; transition: opacity 2s ease;
             width: 100%; height: 100%; position: relative;
         }
 
         .wallpaper {
             position: absolute; width: 100%; height: 100%;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%); /* Soft White/Grey Gradient */
             z-index: -1;
         }
         
-        .orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.6; animation: float 20s infinite alternate; }
-        .o1 { width: 60vh; height: 60vh; background: #a18cd1; top: -10%; left: -10%; }
-        .o2 { width: 50vh; height: 50vh; background: #fbc2eb; bottom: -10%; right: -10%; animation-delay: -5s; }
-        .o3 { width: 40vh; height: 40vh; background: #8fd3f4; top: 40%; right: 30%; animation-delay: -10s; }
+        /* Pastel Liquid Orbs */
+        .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.6; animation: float 20s infinite alternate; }
+        .o1 { width: 70vh; height: 70vh; background: #a18cd1; top: -20%; left: -10%; opacity: 0.4; } /* Soft Purple */
+        .o2 { width: 60vh; height: 60vh; background: #fad0c4; bottom: -10%; right: -10%; opacity: 0.5; } /* Soft Peach */
+        .o3 { width: 50vh; height: 50vh; background: #a6c0fe; top: 40%; right: 30%; opacity: 0.4; } /* Soft Blue */
 
-        @keyframes float { from { transform: translate(0,0); } to { transform: translate(30px, 50px); } }
+        @keyframes float { from { transform: translate(0,0); } to { transform: translate(40px, 60px); } }
 
-        /* --- 3. DOCK (MacOS Style) --- */
+        /* --- 3. DOCK (Frosted Glass) --- */
         .dock-container {
             position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
-            display: flex; gap: 15px; padding: 15px 25px;
-            background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(40px);
-            border-radius: 28px; border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            display: flex; gap: 20px; padding: 15px 30px;
+            background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+            border-radius: 35px; border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: var(--shadow-deep);
             z-index: 1000; transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
         .app-icon {
-            width: 60px; height: 60px; border-radius: 16px;
+            width: 60px; height: 60px; border-radius: 18px;
             display: flex; align-items: center; justify-content: center;
             font-size: 1.8rem; color: white; cursor: pointer;
             transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1.5); position: relative;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         .app-icon:hover { transform: translateY(-20px) scale(1.2); }
-        .app-icon::after {
-            content: attr(data-name); position: absolute; top: -40px;
-            background: rgba(255,255,255,0.9); color: black; font-size: 12px; font-weight: 600;
-            padding: 4px 8px; border-radius: 6px; opacity: 0; pointer-events: none; transition: 0.2s;
-        }
-        .app-icon:hover::after { opacity: 1; top: -50px; }
-
+        
         /* Icon Gradients */
-        .ico-profile { background: linear-gradient(180deg, #434343, #000000); }
-        .ico-work { background: linear-gradient(180deg, #FF3B30, #FF9500); }
-        .ico-stats { background: linear-gradient(180deg, #34C759, #30B0C7); }
-        .ico-library { background: linear-gradient(180deg, #5856D6, #AF52DE); }
-        .ico-lab { background: linear-gradient(180deg, #007AFF, #5AC8FA); }
-        .ico-mail { background: linear-gradient(180deg, #8E8E93, #636366); }
+        .ico-profile { background: linear-gradient(135deg, #30cfd0 0%, #330867 100%); }
+        .ico-work { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .ico-gallery { background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%); } 
+        .ico-toolkit { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .ico-lab { background: linear-gradient(135deg, #cd9cf2 0%, #f6f3ff 100%); }
+        .ico-mail { background: linear-gradient(135deg, #434343 0%, #000000 100%); }
 
-        /* --- 4. LIQUID GLASS WINDOWS --- */
+        /* --- 4. APP WINDOWS (Light Glass) --- */
         .app-window {
-            position: fixed; top: 8%; left: 8%; width: 84%; height: 80%;
+            position: fixed; top: 8%; left: 8%; width: 84%; height: 84%;
             background: var(--glass-panel);
-            backdrop-filter: blur(var(--blur-strength));
+            backdrop-filter: blur(var(--blur-strength)); -webkit-backdrop-filter: blur(var(--blur-strength));
             border: 1px solid var(--glass-border);
             border-radius: 24px;
-            box-shadow: 0 40px 100px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow-deep);
             z-index: 2000;
             display: flex;
-            opacity: 0; pointer-events: none; transform: scale(0.9) translateY(40px);
+            opacity: 0; pointer-events: none; transform: scale(0.95);
             transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
             overflow: hidden;
         }
-        .app-window.open { opacity: 1; pointer-events: all; transform: scale(1) translateY(0); }
+        .app-window.open { opacity: 1; pointer-events: all; transform: scale(1); }
 
         /* Sidebar */
         .app-sidebar {
             width: 260px; background: var(--glass-sidebar);
-            border-right: 1px solid rgba(0,0,0,0.08);
-            padding: 25px; display: flex; flex-direction: column;
+            border-right: 1px solid rgba(0,0,0,0.05);
+            padding: 30px 20px; display: flex; flex-direction: column;
         }
         
         .window-controls { display: flex; gap: 8px; margin-bottom: 40px; }
-        .dot { width: 12px; height: 12px; border-radius: 50%; cursor: pointer; transition: 0.2s; }
+        .dot { width: 14px; height: 14px; border-radius: 50%; cursor: pointer; transition: 0.2s; }
         .dot:hover { transform: scale(1.2); }
         .dot-red { background: #FF5F56; } .dot-yel { background: #FFBD2E; } .dot-grn { background: #27C93F; }
 
         .nav-item {
-            padding: 12px 16px; margin-bottom: 8px; border-radius: 12px; cursor: pointer;
-            color: var(--text-gray); font-weight: 500; font-size: 0.95rem;
+            padding: 14px 16px; margin-bottom: 8px; border-radius: 12px; cursor: pointer;
+            color: var(--text-gray); font-weight: 500; font-size: 1rem;
             transition: 0.2s; display: flex; align-items: center; gap: 12px;
         }
         .nav-item:hover { background: rgba(0,0,0,0.05); color: var(--text-dark); }
-        .nav-item.active { background: #fff; color: var(--accent); font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .nav-item.active { background: #fff; color: var(--accent); font-weight: 600; box-shadow: var(--shadow-soft); }
 
         /* Main Content */
-        .app-main { flex: 1; overflow-y: auto; position: relative; scroll-behavior: smooth; background: rgba(255,255,255,0.4); }
-        .tab-content { display: none; padding: 50px; animation: fadeIn 0.4s ease; }
+        .app-main { flex: 1; overflow-y: auto; position: relative; scroll-behavior: smooth; background: rgba(255,255,255,0.3); }
+        .tab-content { display: none; padding: 50px; animation: fadeIn 0.5s ease; }
         .tab-content.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         /* Typography & Elements */
-        h1 { font-size: 2.5rem; margin-bottom: 10px; line-height: 1.1; letter-spacing: -1px; }
-        h2 { font-size: 1.5rem; margin-bottom: 25px; font-weight: 600; }
-        h3 { font-size: 1.1rem; margin-bottom: 15px; font-weight: 600; color: var(--text-dark); }
-        p { font-size: 1rem; line-height: 1.7; margin-bottom: 20px; color: #444; }
+        h1 { font-size: 2.8rem; margin-bottom: 10px; line-height: 1.1; color: #000; letter-spacing: -1px; }
+        h2 { font-size: 1.8rem; margin-bottom: 20px; font-weight: 700; color: #333; }
+        h3 { font-size: 1.2rem; margin-bottom: 10px; font-weight: 600; color: var(--accent); }
+        p { font-size: 1.05rem; line-height: 1.7; margin-bottom: 20px; color: #555; }
         
-        /* Glass Cards (Bento) */
+        /* Glass Cards (Bento Style) */
         .glass-card {
-            background: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.8);
-            padding: 30px; border-radius: 20px; margin-bottom: 20px;
-            transition: transform 0.2s; box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            background: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.8);
+            padding: 30px; border-radius: 24px; margin-bottom: 25px;
+            transition: transform 0.2s; box-shadow: var(--shadow-soft);
         }
-        .glass-card:hover { transform: translateY(-3px); background: rgba(255,255,255,0.9); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .glass-card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.8); }
 
-        /* Graphical Stats Bars */
-        .bar-container { margin-bottom: 20px; }
-        .bar-label { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; font-weight: 600; }
-        .progress-track { width: 100%; height: 10px; background: rgba(0,0,0,0.05); border-radius: 5px; overflow: hidden; }
-        .progress-bar { height: 100%; border-radius: 5px; animation: slideRight 1.5s ease-out forwards; width: 0; }
-        @keyframes slideRight { to { width: var(--w); } }
-
-        /* Profile Header */
-        .profile-header { display: flex; align-items: center; gap: 30px; margin-bottom: 40px; }
-        .profile-icon-large { 
-            width: 100px; height: 100px; border-radius: 50%; background: #333; color: white;
-            display: flex; align-items: center; justify-content: center; font-size: 3rem;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        /* Gallery Grid */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        .gallery-item {
+            background: white; border-radius: 16px; padding: 20px; text-align: center;
+            box-shadow: var(--shadow-soft); border: 1px solid rgba(0,0,0,0.05); transition: 0.3s;
         }
-
-        /* Certificate Gallery */
-        .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-        .cert-item { text-align: center; padding: 20px; border: 1px solid rgba(0,0,0,0.05); border-radius: 15px; background: rgba(255,255,255,0.5); transition: 0.3s; }
-        .cert-item:hover { background: white; transform: scale(1.05); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .cert-item i { font-size: 2rem; margin-bottom: 10px; color: var(--text-gray); }
-        .cert-item h4 { font-size: 0.9rem; font-weight: 600; }
+        .gallery-item:hover { transform: scale(1.03); box-shadow: var(--shadow-deep); }
+        .gallery-icon { font-size: 2.5rem; margin-bottom: 15px; color: var(--text-gray); }
         
         /* Timeline */
         .timeline-item { 
-            padding-left: 25px; border-left: 2px solid #ddd; position: relative; margin-bottom: 30px; 
+            padding-left: 30px; border-left: 3px solid #e0e0e0; position: relative; margin-bottom: 40px; 
         }
         .timeline-item::before { 
-            content:''; position: absolute; left: -7px; top: 5px; width: 12px; height: 12px; 
-            border-radius: 50%; background: var(--accent); border: 2px solid white; 
+            content:''; position: absolute; left: -9px; top: 6px; width: 15px; height: 15px; 
+            border-radius: 50%; background: var(--accent); border: 3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .t-date { font-size: 0.8rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
-        .t-role { font-size: 1.2rem; font-weight: 700; margin: 5px 0; }
-        .t-company { font-weight: 500; color: #666; margin-bottom: 10px; }
+        .t-date { font-size: 0.85rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 5px; }
+        .t-role { font-size: 1.3rem; font-weight: 700; color: #000; }
+        .t-company { font-weight: 500; color: #666; margin-bottom: 10px; font-size: 1rem; }
+
+        /* Profile Hero */
+        .profile-header { display: flex; align-items: center; gap: 30px; margin-bottom: 40px; }
+        .profile-pic { 
+            width: 110px; height: 110px; border-radius: 50%; object-fit: cover; 
+            box-shadow: var(--shadow-deep); border: 4px solid white;
+        }
 
         /* Mobile */
         @media (max-width: 768px) {
             .app-window { flex-direction: column; top: 0; left: 0; width: 100%; height: 100%; border-radius: 0; }
             .app-sidebar { width: 100%; height: auto; flex-direction: row; overflow-x: auto; padding: 15px; border-bottom: 1px solid rgba(0,0,0,0.05); }
-            .nav-item { white-space: nowrap; font-size: 0.8rem; padding: 8px 12px; }
-            .boot-logo { font-size: 3rem; }
+            .nav-item { white-space: nowrap; font-size: 0.8rem; padding: 10px 15px; }
+            .hello-text { font-size: 3rem; }
             .profile-header { flex-direction: column; text-align: center; }
+            .dock-container { padding: 10px 20px; gap: 10px; bottom: 20px; }
+            .app-icon { width: 50px; height: 50px; font-size: 1.4rem; }
         }
     </style>
 </head>
 <body>
 
     <div id="boot-screen">
-        <div class="boot-logo">N</div>
-        <div class="boot-sub">Welcome to Niharika's World</div>
+        <div class="hello-text">hello</div>
+        <div class="welcome-text">Welcome to the world of Niharika</div>
     </div>
 
     <div id="desktop">
@@ -220,40 +226,46 @@
         </div>
 
         <div class="dock-container">
-            <div class="app-icon ico-profile" data-name="Profile" onclick="openApp('app-profile')"><i class="fas fa-user-astronaut"></i></div>
-            <div class="app-icon ico-work" data-name="Journey" onclick="openApp('app-work')"><i class="fas fa-briefcase"></i></div>
-            <div class="app-icon ico-stats" data-name="Impact" onclick="openApp('app-stats')"><i class="fas fa-chart-line"></i></div>
-            <div class="app-icon ico-library" data-name="Library" onclick="openApp('app-library')"><i class="fas fa-book-open"></i></div>
-            <div class="app-icon ico-lab" data-name="Lab" onclick="openApp('app-lab')"><i class="fas fa-code"></i></div>
-            <div class="app-icon ico-mail" data-name="Connect" onclick="openApp('app-mail')"><i class="fas fa-paper-plane"></i></div>
+            <div class="app-icon ico-profile" onclick="openApp('app-profile')"><i class="fas fa-user"></i></div>
+            <div class="app-icon ico-work" onclick="openApp('app-work')"><i class="fas fa-briefcase"></i></div>
+            <div class="app-icon ico-gallery" onclick="openApp('app-gallery')"><i class="fas fa-images"></i></div>
+            <div class="app-icon ico-toolkit" onclick="openApp('app-toolkit')"><i class="fas fa-tools"></i></div>
+            <div class="app-icon ico-lab" onclick="openApp('app-lab')"><i class="fas fa-code"></i></div>
+            <div class="app-icon ico-mail" onclick="openApp('app-mail')"><i class="fas fa-paper-plane"></i></div>
         </div>
     </div>
 
     <div id="app-profile" class="app-window">
         <div class="app-sidebar">
             <div class="window-controls"><div class="dot dot-red" onclick="closeApp('app-profile')"></div><div class="dot dot-yel"></div><div class="dot dot-grn"></div></div>
-            <div class="nav-item active" onclick="switchTab('profile-bio', this)"><i class="fas fa-user-circle"></i> Bio & Philosophy</div>
-            <div class="nav-item" onclick="switchTab('profile-edu', this)"><i class="fas fa-graduation-cap"></i> Education</div>
+            <div class="nav-item active" onclick="switchTab('prof-bio', this)"><i class="fas fa-user-circle"></i> About Me</div>
+            <div class="nav-item" onclick="switchTab('prof-edu', this)"><i class="fas fa-graduation-cap"></i> Education</div>
         </div>
         <div class="app-main">
-            <div id="profile-bio" class="tab-content active">
+            <div id="prof-bio" class="tab-content active">
                 <div class="profile-header">
-                    <div class="profile-icon-large"><i class="fas fa-user"></i></div>
+                    <img src="ME.jpg" alt="Niharika" class="profile-pic" onerror="this.src='https://ui-avatars.com/api/?name=Niharika+S&background=random&size=200'">
                     <div>
                         <h1>Niharika Srivastava</h1>
-                        <p style="margin:0; font-size:1.3rem; color:var(--accent); font-weight:500;">Storyteller & Strategist | 8 Years of Impact</p>
+                        <p style="margin:0; font-size:1.3rem; color:var(--accent);">Storyteller. Strategist. Leader.</p>
                     </div>
                 </div>
                 <div class="glass-card">
-                    <h2>About Me</h2>
-                    <p>I build communities and drive growth. Currently a <strong>Senior Unit Manager (HR & Comms)</strong> at <strong>Bajaj Finserv</strong>, I specialize in transforming brand stories into measurable revenue.</p>
-                    <p>My unique background in <strong>English Literature</strong> and <strong>German Language</strong> fuels a nuanced approach to content that connects, converts, and builds lasting brand loyalty. I don't just post content; I engineer narratives.</p>
+                    [cite_start]<h2>Professional Summary [cite: 306]</h2>
+                    <p>I build communities and drive growth. [cite_start]Currently a <strong>Senior Unit Manager (HR & Communications)</strong> at <strong>Bajaj Finserv</strong>, I specialize in transforming brand stories into measurable revenue[cite: 311].</p>
+                    [cite_start]<p>With 8 years of experience, my background in <strong>English Literature</strong> fuels a unique approach to content that connects, converts, and builds lasting brand loyalty[cite: 317].</p>
+                </div>
+                <div class="glass-card">
+                    <h2>Core Competencies</h2>
+                    <p>• <strong>Corporate Branding:</strong> Enhancing employer brand value via social channels.<br>
+                    [cite_start]• <strong>Performance Marketing:</strong> Lead generation & ROI optimization[cite: 330].<br>
+                    [cite_start]• <strong>Technical Writing:</strong> Simplifying complex tech for B2B audiences[cite: 327].</p>
                 </div>
             </div>
-            <div id="profile-edu" class="tab-content">
-                <h2>Academic Foundation</h2>
+            <div id="prof-edu" class="tab-content">
+                <h1>Academic Foundation</h1>
                 <div class="glass-card" style="border-left: 5px solid #007AFF;">
-                    <h3>Delhi University</h3>
+                    [cite_start]<h3>Delhi University [cite: 317]</h3>
                     <p><strong>Diploma in German Language</strong> (2018 - 2020)</p>
                     <p><strong>Bachelor of Arts (English Language & Literature)</strong> (2015 - 2018)</p>
                     <p style="font-size:0.9rem; color:#666;">Grade: A | Activities: Literary Societies, Volunteering, Management.</p>
@@ -269,46 +281,46 @@
 
     <div id="app-work" class="app-window">
         <div class="app-sidebar">
-            <div class="window-controls"><div class="dot dot-red" onclick="closeApp('app-work')"></div><div class="dot dot-yel"></div><div class="dot dot-grn"></div></div>
-            <div class="nav-item active"><i class="fas fa-briefcase"></i> Experience Timeline</div>
+            <div class="window-controls"><div class="dot dot-red" onclick="closeApp('app-work')"></div></div>
+            <div class="nav-item active"><i class="fas fa-briefcase"></i> Experience</div>
         </div>
         <div class="app-main">
             <div class="tab-content active">
-                <h1>Professional Journey</h1>
+                <h1>Professional History</h1>
                 
                 <div class="timeline-item">
                     <span class="t-date">Mar 2025 - Present</span>
-                    <div class="t-role">Senior Unit Manager - HR & Communications</div>
-                    <div class="t-company">Bajaj Finserv | Pune, India</div>
+                    <div class="t-role">Senior Unit Manager - HR & Comms</div>
+                    <div class="t-company">Bajaj Finserv | Pune</div>
                     <p>Leading strategic communications and social media marketing initiatives.</p>
                 </div>
-                
+
                 <div class="timeline-item">
                     <span class="t-date">Aug 2023 - Mar 2025</span>
-                    <div class="t-role">Unit Manager - HR & Communications</div>
+                    [cite_start]<div class="t-role">Unit Manager - HR & Comms [cite: 311]</div>
                     <div class="t-company">Bajaj Finserv</div>
-                    <p>Spearheaded Social Media Marketing strategies to enhance employer branding.</p>
+                    <p>Spearheaded Social Media Marketing strategies. [cite_start]Managed 1M+ LinkedIn community[cite: 313].</p>
                 </div>
 
                 <div class="timeline-item">
                     <span class="t-date">Apr 2022 - Aug 2023</span>
-                    <div class="t-role">Technical Content Manager</div>
+                    [cite_start]<div class="t-role">Technical Content Manager [cite: 327]</div>
                     <div class="t-company">E2E Networks Limited | Delhi</div>
-                    <p>Managed technical content, SEO, and audience engagement. Lead a team of writers and designers. Strategies included Email Marketing, CMS, Performance Marketing, and Employer Branding.</p>
+                    <p>Managed technical content, SEO, and audience engagement. Lead a team of writers/designers. [cite_start]Achieved growth metrics scaling up from previous years[cite: 329].</p>
                 </div>
 
                 <div class="timeline-item">
                     <span class="t-date">Dec 2021 - Feb 2022</span>
-                    <div class="t-role">Marketing Executive (Tech)</div>
+                    [cite_start]<div class="t-role">Marketing Executive (Tech) [cite: 332]</div>
                     <div class="t-company">Scaler Academy | Remote</div>
-                    <p>Marketed brand and achieved revenue targets. Counseled 500+ IT professionals for full-stack courses. Utilized CRM to track pipeline activities.</p>
+                    <p>Counseled 500+ IT professionals. Utilized CRM to track leads. [cite_start]Optimized lead generation processes[cite: 334].</p>
                 </div>
 
                 <div class="timeline-item">
                     <span class="t-date">Feb 2021 - Sep 2021</span>
-                    <div class="t-role">Marketing Executive (Non-Tech)</div>
+                    [cite_start]<div class="t-role">Marketing Executive [cite: 344]</div>
                     <div class="t-company">PlanetSpark | Remote</div>
-                    <p>Achieved 1000 admissions in K-12 segment. Exceeded monthly revenue targets by <strong>200-300%</strong>.</p>
+                    <p>Achieved 1000 admissions in K-12. [cite_start]Exceeded monthly revenue targets by <strong>200-300%</strong>[cite: 346].</p>
                 </div>
 
                 <div class="timeline-item">
@@ -320,104 +332,108 @@
 
                 <div class="timeline-item">
                     <span class="t-date">Jul 2019 - Aug 2019</span>
-                    <div class="t-role">Event Manager Intern</div>
+                    [cite_start]<div class="t-role">Event Manager Intern [cite: 352]</div>
                     <div class="t-company">Bennett Coleman (Times Group)</div>
-                    <p>Intern in event management. Co-created management and inter-personal environment.</p>
+                    <p>Intern in event management. [cite_start]Co-created management and inter-personal environment[cite: 353].</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="app-stats" class="app-window">
+    <div id="app-gallery" class="app-window">
         <div class="app-sidebar">
-            <div class="window-controls"><div class="dot dot-red" onclick="closeApp('app-stats')"></div><div class="dot dot-yel"></div><div class="dot dot-grn"></div></div>
-            <div class="nav-item active" onclick="switchTab('stats-overview', this)"><i class="fas fa-chart-pie"></i> Overview</div>
-            <div class="nav-item" onclick="switchTab('stats-certs', this)"><i class="fas fa-certificate"></i> Certifications</div>
+            <div class="window-controls"><div class="dot dot-red" onclick="closeApp('app-gallery')"></div></div>
+            <div class="nav-item active" onclick="switchTab('gal-awards', this)"><i class="fas fa-trophy"></i> Awards</div>
+            <div class="nav-item" onclick="switchTab('gal-pubs', this)"><i class="fas fa-book"></i> Publications</div>
+            <div class="nav-item" onclick="switchTab('gal-certs', this)"><i class="fas fa-certificate"></i> Certificates</div>
         </div>
         <div class="app-main">
-            <div id="stats-overview" class="tab-content active">
-                <h1>Impact Dashboard</h1>
-                <div class="glass-card" style="display:flex; justify-content:space-around; text-align:center;">
-                    <div><h2 style="font-size:3rem; margin:0; color:#007AFF;">1M+</h2><p>LinkedIn Reach</p></div>
-                    <div><h2 style="font-size:3rem; margin:0; color:#34C759;">500%</h2><p>Growth</p></div>
-                    <div><h2 style="font-size:3rem; margin:0; color:#FF9500;">300%</h2><p>Rev. Target</p></div>
-                </div>
-
-                <h3>Technical Proficiency</h3>
-                <div class="glass-card">
-                    <div class="bar-container">
-                        <div class="bar-label"><span>Google Analytics (360, Power User)</span> <span>Expert</span></div>
-                        <div class="progress-track"><div class="progress-bar" style="--w: 95%; background: #007AFF;"></div></div>
+            <div id="gal-awards" class="tab-content active">
+                <h1>Wall of Recognition</h1>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <i class="fas fa-medal gallery-icon" style="color:#FFD700;"></i>
+                        [cite_start]<h4>100 Inspiring Authors of India [cite: 386]</h4>
+                        <p style="font-size:0.8rem; color:#666;">The Indian Awaz (2018)</p>
                     </div>
-                    <div class="bar-container">
-                        <div class="bar-label"><span>SEO & SEM (Semrush)</span> <span>Advanced</span></div>
-                        <div class="progress-track"><div class="progress-bar" style="--w: 90%; background: #FF3B30;"></div></div>
+                    <div class="gallery-item">
+                        <i class="fas fa-award gallery-icon" style="color:#007AFF;"></i>
+                        [cite_start]<h4>Literary Captain [cite: 379]</h4>
+                        <p style="font-size:0.8rem; color:#666;">StoryMirror (2018)</p>
                     </div>
-                    <div class="bar-container">
-                        <div class="bar-label"><span>CRM (Zoho, HubSpot)</span> <span>Advanced</span></div>
-                        <div class="progress-track"><div class="progress-bar" style="--w: 85%; background: #34C759;"></div></div>
+                    <div class="gallery-item">
+                        <i class="fas fa-star gallery-icon" style="color:#FF3B30;"></i>
+                        [cite_start]<h4>Wingword Poetry Prize [cite: 483]</h4>
+                        <p style="font-size:0.8rem; color:#666;">Certificate of Merit (2018)</p>
                     </div>
-                    <div class="bar-container">
-                        <div class="bar-label"><span>Content Tools (Canva, Figma, WordPress)</span> <span>Expert</span></div>
-                        <div class="progress-track"><div class="progress-bar" style="--w: 92%; background: #AF52DE;"></div></div>
+                    <div class="gallery-item">
+                        <i class="fas fa-chalkboard-teacher gallery-icon" style="color:#34C759;"></i>
+                        [cite_start]<h4>Teach India Internship [cite: 349]</h4>
+                        <p style="font-size:0.8rem; color:#666;">Times of India CSR</p>
                     </div>
                 </div>
             </div>
 
-            <div id="stats-certs" class="tab-content">
-                <h1>Gallery of Credentials</h1>
-                <div class="cert-grid">
-                    <div class="cert-item">
-                        <i class="fab fa-google" style="font-size:2.5rem; color:#4285F4; margin-bottom:15px;"></i>
-                        <h4>Google Analytics 360</h4>
-                    </div>
-                    <div class="cert-item">
-                        <i class="fab fa-google" style="font-size:2.5rem; color:#4285F4; margin-bottom:15px;"></i>
-                        <h4>Advanced Google Analytics</h4>
-                    </div>
-                    <div class="cert-item">
-                        <i class="fab fa-google" style="font-size:2.5rem; color:#4285F4; margin-bottom:15px;"></i>
-                        <h4>Google Ads Display</h4>
-                    </div>
-                    <div class="cert-item">
-                        <i class="fab fa-hubspot" style="font-size:2.5rem; color:#FF7A59; margin-bottom:15px;"></i>
-                        <h4>Inbound Marketing</h4>
-                    </div>
-                    <div class="cert-item">
-                        <i class="fas fa-users" style="font-size:2.5rem; color:#007AFF; margin-bottom:15px;"></i>
-                        <h4>Soft Skills (Talerang)</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="app-library" class="app-window">
-        <div class="app-sidebar">
-            <div class="window-controls"><div class="dot dot-red" onclick="closeApp('app-library')"></div></div>
-            <div class="nav-item active"><i class="fas fa-book"></i> Publications</div>
-        </div>
-        <div class="app-main">
-            <div class="tab-content active">
-                <h1>Literary Portfolio</h1>
-                <p>Published Author & Poet.</p>
-
+            <div id="gal-pubs" class="tab-content">
+                <h1>Published Works</h1>
                 <div class="glass-card" style="border-left: 5px solid #FF9500;">
-                    <h3>"To Be Continued..."</h3>
+                    [cite_start]<h3>"To Be Continued..." [cite: 658]</h3>
                     <p><strong>Role:</strong> Author | <strong>Publisher:</strong> Blue Rose Publications (2016)</p>
                     <p>A debut novel exploring human resilience. Available on Amazon.</p>
                 </div>
-
                 <div class="glass-card" style="border-left: 5px solid #AF52DE;">
-                    <h3>"Japanese Antiques"</h3>
-                    <p><strong>Publication:</strong> UNREAD Anthology (Platform For Artists)</p>
+                    [cite_start]<h3>"Japanese Antiques" [cite: 676]</h3>
+                    <p><strong>Publication:</strong> UNREAD Anthology</p>
                     <p>Featured in a collection of 100 pieces by writers across India.</p>
                 </div>
-
                 <div class="glass-card" style="border-left: 5px solid #34C759;">
                     <h3>"Sundar From My Mother's Dictionary"</h3>
                     <p><strong>Publication:</strong> Fable by The Cognition Tree</p>
                     <p>Describes the meaning of "Beautiful" with a vision to promote self-love.</p>
+                </div>
+            </div>
+
+            <div id="gal-certs" class="tab-content">
+                <h1>Licenses & Certifications</h1>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <i class="fab fa-google gallery-icon" style="color:#4285F4;"></i>
+                        [cite_start]<h4>Google Analytics 360 [cite: 319]</h4>
+                    </div>
+                    <div class="gallery-item">
+                        <i class="fab fa-google gallery-icon" style="color:#4285F4;"></i>
+                        <h4>Advanced Google Analytics</h4>
+                    </div>
+                    <div class="gallery-item">
+                        <i class="fab fa-hubspot gallery-icon" style="color:#FF7A59;"></i>
+                        <h4>Inbound Marketing</h4>
+                    </div>
+                    <div class="gallery-item">
+                        <i class="fas fa-users gallery-icon" style="color:#007AFF;"></i>
+                        [cite_start]<h4>Soft Skills (Talerang) [cite: 750]</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="app-toolkit" class="app-window">
+        <div class="app-sidebar">
+            <div class="window-controls"><div class="dot dot-red" onclick="closeApp('app-toolkit')"></div></div>
+            <div class="nav-item active"><i class="fas fa-tools"></i> Skills</div>
+        </div>
+        <div class="app-main">
+            <div class="tab-content active">
+                <h1>Technical Proficiency</h1>
+                <div class="gallery-grid">
+                    [cite_start]<div class="gallery-item"><h4>Zoho Suite [cite: 335]</h4></div>
+                    [cite_start]<div class="gallery-item"><h4>Semrush [cite: 324]</h4></div>
+                    [cite_start]<div class="gallery-item"><h4>Google Analytics [cite: 319]</h4></div>
+                    [cite_start]<div class="gallery-item"><h4>Figma [cite: 342]</h4></div>
+                    [cite_start]<div class="gallery-item"><h4>Canva [cite: 320]</h4></div>
+                    [cite_start]<div class="gallery-item"><h4>Mailchimp [cite: 322]</h4></div>
+                    <div class="gallery-item"><h4>WordPress</h4></div>
+                    [cite_start]<div class="gallery-item"><h4>Hootsuite [cite: 325]</h4></div>
                 </div>
             </div>
         </div>
@@ -432,27 +448,21 @@
             <div class="tab-content active">
                 <h1>Open Source Projects</h1>
                 <p>Where creativity meets logic.</p>
-                
-                <div class="cert-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:20px;">
-                    <div class="glass-card" style="text-align:center;">
-                        <i class="fas fa-calculator" style="font-size:3rem; color:#5856D6; margin-bottom:15px;"></i>
-                        <h3>Total Impact Calc</h3>
-                        <p>Measure cumulative metrics.</p>
-                        <a href="https://niharikasrivastava26.github.io/Total-Impact-Calculator/" target="_blank" style="display:inline-block; padding:10px 20px; background:#000; color:white; border-radius:20px; text-decoration:none; font-size:0.9rem;">View Live</a>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <i class="fas fa-calculator gallery-icon" style="color:#5856D6;"></i>
+                        <h4>Total Impact Calc</h4>
+                        <a href="https://niharikasrivastava26.github.io/Total-Impact-Calculator/" target="_blank" style="display:inline-block; margin-top:10px; padding:8px 20px; background:#000; color:#fff; border-radius:20px; text-decoration:none;">View Live</a>
                     </div>
-
-                    <div class="glass-card" style="text-align:center;">
-                        <i class="fas fa-robot" style="font-size:3rem; color:#5856D6; margin-bottom:15px;"></i>
-                        <h3>Day.OS</h3>
-                        <p>AI Life Planner.</p>
-                        <a href="https://niharikasrivastava26.github.io/Day.OS/" target="_blank" style="display:inline-block; padding:10px 20px; background:#000; color:white; border-radius:20px; text-decoration:none; font-size:0.9rem;">View Live</a>
+                    <div class="gallery-item">
+                        <i class="fas fa-robot gallery-icon" style="color:#5856D6;"></i>
+                        <h4>Day.OS</h4>
+                        <a href="https://niharikasrivastava26.github.io/Day.OS/" target="_blank" style="display:inline-block; margin-top:10px; padding:8px 20px; background:#000; color:#fff; border-radius:20px; text-decoration:none;">View Live</a>
                     </div>
-
-                    <div class="glass-card" style="text-align:center;">
-                        <i class="fas fa-leaf" style="font-size:3rem; color:#5856D6; margin-bottom:15px;"></i>
-                        <h3>VeggieSmart</h3>
-                        <p>Meal & Sip Planner.</p>
-                        <a href="https://niharikasrivastava26.github.io/VeggieSmart/" target="_blank" style="display:inline-block; padding:10px 20px; background:#000; color:white; border-radius:20px; text-decoration:none; font-size:0.9rem;">View Live</a>
+                    <div class="gallery-item">
+                        <i class="fas fa-leaf gallery-icon" style="color:#5856D6;"></i>
+                        <h4>VeggieSmart</h4>
+                        <a href="https://niharikasrivastava26.github.io/VeggieSmart/" target="_blank" style="display:inline-block; margin-top:10px; padding:8px 20px; background:#000; color:#fff; border-radius:20px; text-decoration:none;">View Live</a>
                     </div>
                 </div>
             </div>
@@ -462,7 +472,7 @@
     <div id="app-mail" class="app-window">
         <div class="app-sidebar">
             <div class="window-controls"><div class="dot dot-red" onclick="closeApp('app-mail')"></div></div>
-            <div class="nav-item active"><i class="fas fa-paper-plane"></i> New Message</div>
+            <div class="nav-item active"><i class="fas fa-paper-plane"></i> Contact</div>
         </div>
         <div class="app-main">
             <div class="tab-content active">
@@ -482,7 +492,7 @@
     </div>
 
     <script>
-        // BOOT LOGIC (Safety Timer)
+        // SAFETY BOOT SEQUENCE
         function startOS() {
             const bootScreen = document.getElementById('boot-screen');
             const desktop = document.getElementById('desktop');
@@ -492,8 +502,6 @@
                 desktop.style.opacity = '1';
             }, 1000);
         }
-
-        // Try load, then force start if stuck
         window.addEventListener('load', () => setTimeout(startOS, 4000));
         setTimeout(startOS, 6000); // Failsafe
 
