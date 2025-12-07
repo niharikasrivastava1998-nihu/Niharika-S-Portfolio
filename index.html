@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Niharika | Spatial OS 9.1</title>
+    <title>Niharika | Spatial OS 9.3</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -25,7 +25,7 @@
 
         body { background: var(--bg-color); height: 100vh; overflow: hidden; color: var(--text-dark); }
 
-        /* --- BOOT SCREEN --- */
+        /* --- 1. BOOT SCREEN --- */
         #boot-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #f2f2f7; display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -36,7 +36,7 @@
         @keyframes fadeInOut { 0% { opacity: 0; transform: scale(0.95); } 20% { opacity: 1; transform: scale(1); } 80% { opacity: 1; } 100% { opacity: 0; transform: scale(1.05); } }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* --- DESKTOP --- */
+        /* --- 2. DESKTOP --- */
         #desktop { opacity: 0; transition: opacity 2s ease; width: 100%; height: 100%; position: relative; }
         .wallpaper { position: absolute; width: 100%; height: 100%; background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%); z-index: -1; }
         .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.5; animation: float 20s infinite alternate; }
@@ -44,7 +44,7 @@
         .o2 { width: 60vh; height: 60vh; background: #fad0c4; bottom: -10%; right: -10%; }
         @keyframes float { from { transform: translate(0,0); } to { transform: translate(40px, 60px); } }
 
-        /* --- DOCK --- */
+        /* --- 3. DOCK --- */
         .dock-container {
             position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
             display: flex; gap: 20px; padding: 15px 30px;
@@ -65,7 +65,7 @@
         .ico-lab { background: linear-gradient(135deg, #cd9cf2, #f6f3ff); color: #333; }
         .ico-mail { background: linear-gradient(135deg, #434343, #000000); }
 
-        /* --- WINDOWS --- */
+        /* --- 4. WINDOWS --- */
         .app-window {
             position: fixed; top: 8%; left: 8%; width: 84%; height: 84%;
             background: var(--glass-panel); backdrop-filter: blur(var(--blur-strength));
@@ -214,14 +214,14 @@
                 </div>
 
                 <div class="timeline-item">
-                    <span style="font-weight:700; color:#FF3B30;">APR 2022 - AUG 2023</span>
+                    <span style="font-weight:700; color:#FF3B30;">APR 2022 - JUL 2023</span>
                     <h3 class="t-role">Technical Content Manager</h3>
                     <p class="t-company"><strong>E2E Networks</strong> | Delhi</p>
-                    <p>Managed technical content, SEO, and audience engagement. Lead a team of writers. Strategies included Email Marketing, CMS, and Employer Branding.</p>
+                    <p>Developed targeted strategies for audience engagement and growth. Executed content plans that drove measurable results.</p>
                 </div>
 
                 <div class="timeline-item">
-                    <span style="font-weight:700; color:#34C759;">DEC 2021 - FEB 2022</span>
+                    <span style="font-weight:700; color:#34C759;">DEC 2021 - MAR 2022</span>
                     <h3 class="t-role">Marketing Specialist</h3>
                     <p class="t-company"><strong>Scaler Academy</strong> | Remote</p>
                     <p>Successfully marketed brand and exceeded revenue targets by counseling 500+ IT professionals into Scaler Academy.</p>
@@ -320,19 +320,19 @@
                         <i class="fas fa-calculator" style="font-size:3rem; color:#5856D6; margin-bottom:15px;"></i>
                         <h3>Total Impact Calc</h3>
                         <p>Measure cumulative metrics.</p>
-                        <a href="#" id="link-1" target="_blank" class="project-btn">View Live</a>
+                        <a href="" id="link-1" target="_blank" class="project-btn">View Live</a>
                     </div>
                     <div class="project-card">
                         <i class="fas fa-robot" style="font-size:3rem; color:#5856D6; margin-bottom:15px;"></i>
                         <h3>Day.OS</h3>
                         <p>AI Life Planner.</p>
-                        <a href="#" id="link-2" target="_blank" class="project-btn">View Live</a>
+                        <a href="" id="link-2" target="_blank" class="project-btn">View Live</a>
                     </div>
                     <div class="project-card">
                         <i class="fas fa-leaf" style="font-size:3rem; color:#5856D6; margin-bottom:15px;"></i>
                         <h3>VeggieSmart</h3>
                         <p>Meal & Sip Planner.</p>
-                        <a href="#" id="link-3" target="_blank" class="project-btn">View Live</a>
+                        <a href="" id="link-3" target="_blank" class="project-btn">View Live</a>
                     </div>
                 </div>
             </div>
@@ -359,20 +359,16 @@
     </div>
 
     <script>
-        // --- USER CONFIGURATION SECTION (EDIT LINKS HERE) ---
-        // If your links still don't work, just change them inside these quotes!
-        const projectLinks = {
-            project1: "https://niharikasrivastava1998-nihu.github.io/Total-Impact-Calculator/", // Total Impact
-            project2: "https://niharikasrivastava1998-nihu.github.io/Day.OS/",                 // Day.OS
-            project3: "https://niharikasrivastava1998-nihu.github.io/VeggieSmart/"             // VeggieSmart
+        // --- LINKS CONFIGURATION ---
+        const links = {
+            p1: "https://niharikasrivastava1998-nihu.github.io/Total-Impact-Calculator/",
+            p2: "https://niharikasrivastava1998-nihu.github.io/Day.OS/",
+            p3: "https://niharikasrivastava1998-nihu.github.io/VeggieSmart/"
         };
-
-        // --- DO NOT EDIT BELOW THIS LINE ---
         
-        // APPLY LINKS
-        document.getElementById('link-1').href = projectLinks.project1;
-        document.getElementById('link-2').href = projectLinks.project2;
-        document.getElementById('link-3').href = projectLinks.project3;
+        document.getElementById('link-1').href = links.p1;
+        document.getElementById('link-2').href = links.p2;
+        document.getElementById('link-3').href = links.p3;
 
         // BOOT SEQUENCE
         function startOS() {
